@@ -1,0 +1,233 @@
+setwd("C:/Users/Herman/Documents/saleprices")
+
+test.hseprice<- read.csv(file ="test.csv")
+
+train.hseprice<- read.csv(file = "train.csv")
+
+test.hseprice$SalePrice<-NA
+
+train.hseprice$Istraindataset<-TRUE
+
+test.hseprice$Istraindataset<- FALSE
+
+hse.price<-rbind(train.hseprice,test.hseprice)
+
+#clean the data by removing all NAs
+#tidy the data
+
+hse.price$MSZoning[is.na(hse.price$MSZoning)]<- "RL"
+
+hse.price$LotFrontage[is.na(hse.price$LotFrontage)]<- median(hse.price$LotFrontage,na.rm = TRUE)
+
+hse.price$Alley[is.na(hse.price$Alley)]<- "Grvl"
+
+hse.price$Utilities[is.na(hse.price$Utilities)]<- "AllPub"
+
+hse.price$Exterior1st[is.na(hse.price$Exterior1st)]<- "VinylSd"
+
+hse.price$Exterior2nd[is.na(hse.price$Exterior2nd)]<- "VinylSd"
+
+hse.price$MasVnrType[is.na(hse.price$MasVnrType)]<- "None"
+
+hse.price$MasVnrArea[is.na(hse.price$MasVnrArea)]<- median(hse.price$MasVnrArea,na.rm = TRUE)
+
+hse.price$BsmtQual[is.na(hse.price$BsmtQual)]<- "TA"
+
+hse.price$BsmtCond[is.na(hse.price$BsmtCond)]<- "TA"
+
+hse.price$BsmtExposure[is.na(hse.price$BsmtExposure)]<- "TA"
+
+hse.price$BsmtFinType1[is.na(hse.price$BsmtFinType1)]<- "Unf"
+
+hse.price$BsmtFinSF1[is.na(hse.price$BsmtFinSF1)]<- median(hse.price$BsmtFinSF1,na.rm=TRUE)
+
+hse.price$BsmtFinType2[is.na(hse.price$BsmtFinType2)]<-"Unf"
+
+hse.price$BsmtFinSF2[is.na(hse.price$BsmtFinSF2)]<-median(hse.price$BsmtFinSF2,na.rm = TRUE)
+
+hse.price$BsmtUnfSF[is.na(hse.price$BsmtUnfSF)]<-median(hse.price$BsmtUnfSF,na.rm = TRUE)
+
+hse.price$TotalBsmtSF[is.na(hse.price$TotalBsmtSF)]<-median(hse.price$TotalBsmtSF,na.rm = TRUE)
+
+hse.price$Electrical[is.na(hse.price$Electrical)]<-"SBrkr"
+
+hse.price$BsmtFullBath[is.na(hse.price$BsmtFullBath)]<-median(hse.price$BsmtFullBath,na.rm=TRUE)
+
+hse.price$BsmtHalfBath[is.na(hse.price$BsmtHalfBath)]<-median(hse.price$BsmtHalfBath,na.rm=TRUE)
+
+hse.price$KitchenQual[is.na(hse.price$KitchenQual)]<- "TA"
+
+hse.price$Functional[is.na(hse.price$Functional)]<- "Typ"
+
+hse.price$FireplaceQu[is.na(hse.price$FireplaceQu)]<- "Gd"
+
+hse.price$GarageType[is.na(hse.price$GarageType)]<- "Attchd"
+
+hse.price$GarageYrBlt[is.na(hse.price$GarageYrBlt)]<- median(hse.price$GarageYrBlt,na.rm = TRUE)
+
+hse.price$GarageFinish[is.na(hse.price$GarageFinish)]<- "Unf"
+
+hse.price$GarageArea[is.na(hse.price$GarageArea)]<- median(hse.price$GarageArea,narm=TRUE)
+
+hse.price$GarageQual[is.na(hse.price$GarageQual)]<- "TA"
+
+hse.price$GarageCond[is.na(hse.price$GarageCond)]<- "TA"
+
+hse.price$PoolQC[is.na(hse.price$PoolQC)]<- "Ex"
+
+hse.price$Fence[is.na(hse.price$Fence)]<- "MnPrv"
+
+hse.price$MiscFeature[is.na(hse.price$MiscFeature)]<- "Shed"
+
+hse.price$SaleType[is.na(hse.price$SaleType)]<- "WD"
+
+#Categorical casting
+
+hse.price$MSZoning<-as.factor(hse.price$MSZoning)
+
+hse.price$Street<-as.factor(hse.price$Street)
+
+hse.price$Alley<-as.factor(hse.price$Alley)
+
+hse.price$LotShape<-as.factor(hse.price$LotShape)
+
+hse.price$LandContour<-as.factor(hse.price$LandContour)
+
+hse.price$Utilities<-as.factor(hse.price$Utilities)
+
+hse.price$LotConfig<-as.factor(hse.price$LotConfig)
+
+hse.price$LandSlope<-as.factor(hse.price$LandSlope)
+
+hse.price$Neighborhood<-as.factor(hse.price$Neighborhood)
+
+hse.price$Condition1<-as.factor(hse.price$Condition1)
+
+hse.price$Condition2<-as.factor(hse.price$Condition2)
+
+hse.price$BldgType<-as.factor(hse.price$BldgType)
+
+hse.price$HouseStyle<-as.factor(hse.price$HouseStyle)
+
+hse.price$RoofStyle<-as.factor(hse.price$RoofStyle)
+
+hse.price$RoofMatl<-as.factor(hse.price$RoofMatl)
+
+hse.price$Exterior1st<-as.factor(hse.price$Exterior1st)
+
+hse.price$Exterior2nd<-as.factor(hse.price$Exterior2nd)
+
+hse.price$MasVnrType<-as.factor(hse.price$MasVnrType)
+
+hse.price$ExterQual<-as.factor(hse.price$ExterQual)
+
+hse.price$ExterCond<-as.factor(hse.price$ExterCond)
+
+hse.price$Foundation<-as.factor(hse.price$Foundation)
+
+hse.price$BsmtQual<-as.factor(hse.price$BsmtQual)
+
+hse.price$BsmtCond<-as.factor(hse.price$BsmtCond)
+
+hse.price$BsmtExposure<-as.factor(hse.price$BsmtExposure)
+
+hse.price$BsmtFinType1<-as.factor(hse.price$BsmtFinType1)
+
+hse.price$BsmtFinType2<-as.factor(hse.price$BsmtFinType2)
+
+hse.price$Heating<-as.factor(hse.price$Heating)
+
+hse.price$HeatingQC<-as.factor(hse.price$HeatingQC)
+
+hse.price$CentralAir<-as.factor(hse.price$CentralAir)
+
+hse.price$Electrical<-as.factor(hse.price$Electrical)
+
+hse.price$KitchenQual<-as.factor(hse.price$KitchenQual)
+
+hse.price$Functional<-as.factor(hse.price$Functional)
+
+hse.price$FireplaceQu<-as.factor(hse.price$FireplaceQu)
+
+hse.price$GarageType<-as.factor(hse.price$GarageType)
+
+hse.price$GarageFinish<-as.factor(hse.price$GarageFinish)
+
+hse.price$GarageQual<-as.factor(hse.price$GarageQual)
+
+hse.price$GarageCond<-as.factor(hse.price$GarageCond)
+
+hse.price$PavedDrive<-as.factor(hse.price$PavedDrive)
+
+hse.price$PoolQC<-as.factor(hse.price$PoolQC)
+
+hse.price$Fence<-as.factor(hse.price$Fence)
+
+hse.price$MiscFeature<-as.factor(hse.price$MiscFeature)
+
+hse.price$SaleType<-as.factor(hse.price$SaleType)
+
+hse.price$SaleCondition<-as.factor(hse.price$SaleCondition)
+
+hse.price$OverallQual<- as.factor(hse.price$OverallQual)
+
+hse.price$OverallCond<-as.factor(hse.price$OverallCond)
+
+hse.price$GarageCars<-as.factor(hse.price$GarageCars)
+
+hse.price$KitchenAbvGr<- as.factor(hse.price$KitchenAbvGr)
+
+hse.price$BedroomAbvGr<-as.factor(hse.price$BedroomAbvGr)
+
+hse.price$FullBath<-as.factor(hse.price$FullBath)
+
+hse.price$HalfBath<-as.factor(hse.price$HalfBath)
+
+hse.price$BsmtHalfBath<-as.factor(hse.price$BsmtHalfBath)
+
+hse.price$BsmtFullBath<-as.factor(hse.price$BsmtFullBath)
+
+
+hse.price$TotRmsAbvGrd<-as.factor(hse.price$TotRmsAbvGrd)
+
+hse.price$MoSold<-as.factor(hse.price$MoSold)
+
+hse.price$PoolArea<-as.factor(hse.price$PoolArea)
+
+hse.price$Fireplaces<-as.factor(hse.price$Fireplaces)
+
+#split the data back to test.hseprice and train.hseprice
+
+test.hseprice<-hse.price[hse.price$Istraindataset==FALSE,]
+
+train.hseprice<- hse.price[hse.price$Istraindataset==TRUE,]
+
+train.hseprice$SalePrice<- as.factor(train.hseprice$SalePrice)
+
+hse.equation<- "SalePrice~MSSubClass+MSZoning+LotFrontage+LotArea+Street+Alley+LotShape+
+LandContour+Utilities+LotConfig+LandSlope+Neighborhood+Condition1+Condition2+BldgType+HouseStyle+
+OverallQual+OverallCond+YearBuilt+YearRemodAdd+RoofStyle+RoofMatl+Exterior1st+Exterior2nd+MasVnrArea+MasVnrType+ExterCond+
+Foundation+BsmtQual+BsmtCond+BsmtExposure+BsmtFinType1+BsmtFinSF1+BsmtFinType2+BsmtFinSF2+BsmtUnfSF+
+TotalBsmtSF+Heating+HeatingQC+CentralAir+Electrical+X1stFlrSF+X2ndFlrSF+LowQualFinSF+GrLivArea+
+BsmtFullBath+BsmtHalfBath+FullBath+HalfBath+BedroomAbvGr+KitchenAbvGr+TotRmsAbvGrd+Functional+
+Fireplaces+FireplaceQu+GarageType+GarageYrBlt+GarageFinish+GarageCars+GarageArea+GarageQual+
+GarageCond+PavedDrive+WoodDeckSF+OpenPorchSF+EnclosedPorch+X3SsnPorch+ScreenPorch+PoolArea+PoolQC+
+Fence+MiscFeature +MiscVal+MoSold +YrSold+SaleType+SaleCondition"
+
+hse.formula<- as.formula(hse.equation)
+
+library(randomForest)
+
+hse.model<-randomForest(formula=hse.formula,data=train.hseprice,ntree=500,mtry=3,nodesize=0.01*nrow(test.hseprice))
+
+SalePrice<- predict(hse.model,newdata=test.hseprice)
+
+Id<- test.hseprice$Id
+
+submission.df<- as.data.frame(Id)
+
+submission.df$SalePrice<-SalePrice
+
+submission.df
+
+sub.csv<-write.csv(submission.df,file= "submission_df.csv",row.names = FALSE)
